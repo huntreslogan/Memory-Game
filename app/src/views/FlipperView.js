@@ -5,6 +5,7 @@ define(function(require, exports, module) {
     var Flipper    = require("famous/views/Flipper");
     var Modifier   = require("famous/core/Modifier");
     var View = require('famous/core/View');
+    var ImageSurface = require('famous/surfaces/ImageSurface');
 
     function FlipperView(num) {
         View.call(this);
@@ -12,7 +13,6 @@ define(function(require, exports, module) {
         this.flipper = new Flipper();
 
         this.front = new Surface({
-            content: "<h1>Memory</h1>",
             size: [undefined, undefined],
             properties: {
                 backgroundColor: "hsl(" + (num * 360 / 8) + ", 100%, 50%)",
@@ -29,11 +29,12 @@ define(function(require, exports, module) {
         }.bind(this));
 
 
-        this.back = new Surface({
-            size: [undefined, undefined],
+        this.back = new ImageSurface({
+            size: [200, 200],
+            content: '/images/logo.png',
             properties: {
-                backgroundColor: 'black',
-                border: '1px solid black'
+                margin: 'auto',
+                left: '50px'
 
             }
         });
